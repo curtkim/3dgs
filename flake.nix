@@ -24,6 +24,9 @@
         inherit system;
         config = {
           allowUnfree = true;
+          cudaSupport = true;
+          cudaCapabilities = ["8.6"];
+          cudaEnableForwardCompat = false;
           permittedInsecurePackages = [
             "freeimage-unstable-2021-11-01"
           ];
@@ -49,7 +52,7 @@
 
       devShells.default = pkgs.mkShell {
         packages = [
-          pkgs.colmap
+          pkgs.colmapWithCuda
           (pkgs.python3.withPackages (ps: [
 
           ]))
