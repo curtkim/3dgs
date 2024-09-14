@@ -24,6 +24,9 @@
         inherit system;
         config = {
           allowUnfree = true;
+          permittedInsecurePackages = [
+            "freeimage-unstable-2021-11-01"
+          ];
         };
       };
       hierarchy_rasterizer = pkgs.callPackage ./hierarchy_rasterizer.nix {};
@@ -42,7 +45,16 @@
       devShells.gaussian-hierarchy = gaussian-hierarchy;
       devShells.simple-knn = simple-knn;
       devShells.hierarchy_viewer = hierarchy_viewer;
-      devShells.default = hierarchy_rasterizer;
+      #devShells.default = hierarchy_rasterizer;
+
+      devShells.default = pkgs.mkShell {
+        packages = [
+          pkgs.colmap
+          (pkgs.python3.withPackages (ps: [
+
+          ]))
+        ];
+      };
     });
 }
 
