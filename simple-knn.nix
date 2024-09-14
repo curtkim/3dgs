@@ -3,20 +3,20 @@
 , which
 , python3
 , cudaPackages
-, fetchFromGitHub
+, fetchFromGitLab
 }:
 
 python3.pkgs.buildPythonPackage rec {
-  pname = "hierarchy-rasterizer";
+  pname = "simple-knn";
   version = "unstable-2024-08-07";
   format = "setuptools";
 
-  src = fetchFromGitHub {
-    owner = "graphdeco-inria";
-    repo = "hierarchy-rasterizer";
-    rev = "63fa247628379b993364d720f31b5fe97f3d7ab9";
-    hash = "sha256-k1Scx1PFl248/xNgeM7vGcF5+Izv63tgZ9PXCz9zvqU=";
-    fetchSubmodules = true;
+  src =fetchFromGitLab {
+    domain = "gitlab.inria.fr";
+    owner = "bkerbl";
+    repo = "simple-knn";
+    rev = "86710c2d4b46680c02301765dd79e465819c8f19";
+    hash = "sha256-ZRfQ2CR9w3onwE+9rNz8RPFh7Hy0Le7zju9m1Vh9y/8=";
   };
 
   stdenv = cudaPackages.backendStdenv;
@@ -42,13 +42,13 @@ python3.pkgs.buildPythonPackage rec {
     torchWithCuda
   ];
 
-  pythonImportsCheck = [ "diff_gaussian_rasterization" ];
+  pythonImportsCheck = [ "simple_knn" ];
 
   meta = with lib; {
-    description = "hierarchy rasterizer";
-    homepage = "https://github.com/graphdeco-inria/hierarchy-rasterizer";
+    description = "simple cuda knn";
+    homepage = "https://gitlab.inria.fr/bkerbl/simple-knn/";
     license = licenses.unfree;
     maintainers = with maintainers; [ ];
-    mainProgram = "hierarchy-rasterizer";
+    mainProgram = "simple-knn";
   };
 }

@@ -1,4 +1,5 @@
 { lib
+, cmake
 , ninja
 , which
 , python3
@@ -7,14 +8,14 @@
 }:
 
 python3.pkgs.buildPythonPackage rec {
-  pname = "hierarchy-rasterizer";
+  pname = "gaussian-hierarchy";
   version = "unstable-2024-08-07";
   format = "setuptools";
 
   src = fetchFromGitHub {
     owner = "graphdeco-inria";
-    repo = "hierarchy-rasterizer";
-    rev = "63fa247628379b993364d720f31b5fe97f3d7ab9";
+    repo = "gaussian-hierarchy";
+    rev = "677c8553dc64dfd62c272eca94a291a277733113";
     hash = "sha256-k1Scx1PFl248/xNgeM7vGcF5+Izv63tgZ9PXCz9zvqU=";
     fetchSubmodules = true;
   };
@@ -32,7 +33,6 @@ python3.pkgs.buildPythonPackage rec {
     which
     python3.pkgs.setuptools
   ];
-
   buildInputs = [
     cudaPackages.cudatoolkit   # CUDA Toolkit을 포함
     python3.pkgs.pybind11
@@ -45,10 +45,10 @@ python3.pkgs.buildPythonPackage rec {
   pythonImportsCheck = [ "diff_gaussian_rasterization" ];
 
   meta = with lib; {
-    description = "hierarchy rasterizer";
-    homepage = "https://github.com/graphdeco-inria/hierarchy-rasterizer";
+    description = "gaussian hierarchy";
+    homepage = "https://github.com/graphdeco-inria/gaussian-hierarchy";
     license = licenses.unfree;
     maintainers = with maintainers; [ ];
-    mainProgram = "hierarchy-rasterizer";
+    mainProgram = "gaussian-hierarchy";
   };
 }

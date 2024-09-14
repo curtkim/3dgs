@@ -14,7 +14,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/24.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -27,9 +27,21 @@
         };
       };
       hierarchy_rasterizer = pkgs.callPackage ./hierarchy_rasterizer.nix {};
+      gaussian-hierarchy = pkgs.callPackage ./gaussian-hierarchy.nix {};
+      simple-knn = pkgs.callPackage ./simple-knn.nix {};
+      hierarchy_viewer = pkgs.callPackage ./hierarchy_viewer.nix {};
+
     in {
       packages.hierarchy_rasterizer = hierarchy_rasterizer;
+      packages.gaussian-hierarchy = gaussian-hierarchy;
+      packages.simple-knn = simple-knn;
+      packages.hierarchy_viewer = hierarchy_viewer;
       packages.default = hierarchy_rasterizer;
+
+      devShells.hierarchy_rasterizer = hierarchy_rasterizer;
+      devShells.gaussian-hierarchy = gaussian-hierarchy;
+      devShells.simple-knn = simple-knn;
+      devShells.hierarchy_viewer = hierarchy_viewer;
       devShells.default = hierarchy_rasterizer;
     });
 }
