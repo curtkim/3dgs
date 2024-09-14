@@ -31,6 +31,17 @@
             "freeimage-unstable-2021-11-01"
           ];
         };
+        overlays = [
+          (final: prev: {
+            colmapWithCuda = prev.colmapWithCuda.overrideAttrs (oldAttrs: {
+              cmakeFlags = [
+                "-DCUDA_ENABLED=ON"
+                "-DCUDA_NVCC_FLAGS=--std=c++14"
+                "-DCMAKE_CUDA_ARCHITECTURES=86"
+              ];
+            });
+          })
+        ];
       };
       hierarchy_rasterizer = pkgs.callPackage ./hierarchy_rasterizer.nix {};
       gaussian-hierarchy = pkgs.callPackage ./gaussian-hierarchy.nix {};
