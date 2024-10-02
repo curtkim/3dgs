@@ -1,3 +1,10 @@
+## howto
+```
+$ colmap automatic_reconstructor \
+--workspace_path /data/dataset/havitat67/ \
+--image_path /data/dataset/havitat67/ImagesFromDrone/
+```
+
 ## why Build so hard
 - nix
 - cuda

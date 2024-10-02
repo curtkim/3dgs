@@ -16,9 +16,9 @@ in
 
     src = fetchFromGitHub {
       owner = "yzslab";
-      repo = "gaussian-hierarchy";
+      repo = "gaussian-splatting-lightning";
       rev = "v0.9.0";
-      hash = "sha256-k1Scx1PFl248/xNgeM7vGcF5+Izv63tgZ9PXCz9zvqU=";
+      hash = "sha256-ChbjXxNfWIDVHBUdN15sYT2eMS13qXBrdxpg0JhZuqY=";
       fetchSubmodules = false;
     };
     format = "pyproject";
